@@ -1,0 +1,210 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* To ensure the animation doesn't overflow the screen */
+  }
+  
+  .weather-app {
+    position: relative;
+    max-width: 500px;
+    margin: 100px auto;
+    padding: 30px;
+    background: linear-gradient(135deg, #83a4d4 0%, #b6fbff 100%);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: white;
+    z-index: 10;
+    animation: fadeIn 2s ease-in;
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  h1 {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #ffeb3b; /* Bright yellow for contrast */
+  }
+  
+  form {
+    margin-bottom: 20px;
+  }
+  
+  input[type="text"] {
+    width: 70%;
+    padding: 10px;
+    font-size: 18px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    transition: border 0.3s ease-in-out;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+  
+  input[type="text"]::placeholder {
+    color: #fff;
+  }
+  
+  input[type="text"]:focus {
+    border-color: #03a9f4;
+  }
+  
+  button {
+    padding: 12px 24px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease-in-out;
+    margin-left: 10px;
+  }
+  
+  button:hover {
+    background-color: #e53935;
+  }
+  
+  /* Weather Info Styles */
+  .weather-info {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .weather-info h2 {
+    font-size: 1.8em;
+    color: #fff;
+  }
+  
+  .weather-info p {
+    font-size: 1.2em;
+    margin: 8px 0;
+    color: #ffeb3b; /* Use bright yellow for text */
+  }
+  
+  /* Error Message */
+  p {
+    color: #f44336;
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  
+  /* Cloud and Wind Animation */
+  @keyframes moveClouds {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  @keyframes moveWind {
+    0% {
+      transform: translateX(-20px);
+    }
+    100% {
+      transform: translateX(20px);
+    }
+  }
+  
+  .cloud {
+    position: absolute;
+    top: 10%;
+    left: 0;
+    width: 250px;
+    height: 120px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    animation: moveClouds 15s linear infinite;
+    opacity: 0.9;
+  }
+  
+  .cloud::before,
+  .cloud::after {
+    content: '';
+    position: absolute;
+    background: #fff;
+    width: 200px;
+    height: 100px;
+    border-radius: 50%;
+  }
+  
+  .cloud::before {
+    top: -40px;
+    left: 40px;
+  }
+  
+  .cloud::after {
+    top: 40px;
+    left: 170px;
+  }
+  
+  .wind {
+    position: absolute;
+    top: 60%;
+    left: 5%;
+    width: 60px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.2);
+    animation: moveWind 2s ease-in-out infinite alternate;
+  }
+  
+  .wind::before,
+  .wind::after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.2);
+    width: 40px;
+    height: 3px;
+  }
+  
+  .wind::before {
+    top: 10px;
+    left: 15px;
+  }
+  
+  .wind::after {
+    top: 20px;
+    left: 30px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 480px) {
+    .weather-app {
+      width: 95%;
+      padding: 20px;
+    }
+  
+    input[type="text"] {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  
+    button {
+      width: 100%;
+    }
+  
+    .weather-info {
+      padding: 10px;
+    }
+  }
+  
