@@ -19,7 +19,7 @@ input {
   width: 76%;
   margin-right: 30px;
   border-radius: 6px;
-  border: 1px solid #ccc;
+  border: 1px solid red;
 }
 
 button {
