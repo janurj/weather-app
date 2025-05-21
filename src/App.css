@@ -14,12 +14,12 @@
   padding: 2rem;
   background-color: #ffff00;
   border-radius: 17px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.25);
   transition: transform 0.3s ease;
 }
 
 .weather-app:hover {
-  transform: scale(1.01);
+  transform: scale(1.02);
 }
 
 
