@@ -1,24 +1,31 @@
-name: Build React App
+name: Build and Test React App
 
 on:
+  pull_request:
+    branches:
+      - main
   push:
     branches:
       - main
 
 jobs:
-  build:
+  ci:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
-      - name: Setup Node
-        uses: actions/setup-node@v2
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: npm install
 
-      - name: Build the app
+      - name: Run Tests
+        run: npm test
+
+      - name: Build React App
         run: npm run build
