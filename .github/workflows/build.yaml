@@ -1,39 +1,23 @@
-name: Build and Auto PR for React App
+name: Auto Create Pull Request
 
 on:
   push:
-    branches: [ feature/ui-update ]  # your working branch
-  pull_request:
-    branches: [ main ]
+    branches:
+      - 'feature/**'  # Any feature branch
 
 jobs:
-  build:
+  create-pull-request:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repo
         uses: actions/checkout@v2
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 18
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build the app
-        run: npm run build
-
       - name: Create Pull Request to main
-        uses: peter-evans/create-pull-request@v5
+        uses: repo-sync/pull-request@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          title: "Auto PR: UI update"
-          body: |
-            This PR is automatically created after successful build.
-            Please review and merge.
-          base: main
-          branch: auto/ui-update
-          reviewers: janurj        # your GitHub username (reviewer)
-          assignees: janurj        # assigns PR to you (optional)
+          source_branch: ${{ github.ref_name }}
+          destination_branch: main
+          pr_title: 'Auto PR from ${{ github.ref_name }}'
+          pr_body: 'This PR was automatically created from feature branch.'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
