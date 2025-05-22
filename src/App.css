@@ -9,17 +9,17 @@
 }
 
 .weather-app {
-  max-width: 600px;
+  max-width: 500px;
   margin: auto;
   padding: 2rem;
   background-color: #ffff00;
   border-radius: 17px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.25);
   transition: transform 0.3s ease;
 }
 
 .weather-app:hover {
-  transform: scale(1.01);
+  transform: scale(1.02);
 }
 
 
@@ -27,9 +27,9 @@
 button {
   padding: 0.75rem 1.5rem;
   background-color: #007BFF;
-  color: white;
+  color: yellow;
   border: none;
-  border-radius: 8px;
+  border-radius: 9px;
   cursor: pointer;
   font-size: 1rem;
   transition: background-color 0.3s ease, transform 0.2s;
@@ -40,4 +40,4 @@ button:hover {
   transform: scale(1.05);
 }
 
-.
+

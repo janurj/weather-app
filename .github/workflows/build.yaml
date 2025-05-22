@@ -1,18 +1,22 @@
-name: Build React App
+name: Build and Auto PR for React App
 
 on:
   push:
     branches:
-      - main
+      - 'feature/**'  # Trigger on any feature branch push
+  pull_request:
+    branches:
+      - main          # Also run when a PR targets 'main'
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
           node-version: 18
@@ -22,3 +26,16 @@ jobs:
 
       - name: Build the app
         run: npm run build
+
+      - name: Create or Update Pull Request to main
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: "Auto PR: Update from ${{ github.ref_name }}"
+          body: |
+            This pull request was automatically created after a successful build.
+            Please review and merge.
+          base: main
+          branch: auto/${{ github.ref_name }}
+          reviewers: janurj
+          assignees: janurj
